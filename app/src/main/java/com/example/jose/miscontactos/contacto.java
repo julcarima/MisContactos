@@ -1,0 +1,52 @@
+package com.example.jose.miscontactos;
+
+/**
+ * Created by jose on 29/11/16.
+ */
+
+public class contacto {
+
+    private String nombre;
+    private String telefono;
+    private String email;
+    private int foto;
+
+    public contacto(int foto, String nombre, String telefono, String email) {
+        this.foto = foto;
+        this.nombre = nombre;
+        this.telefono = telefono;
+        this.email = email;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public int getFoto() {
+        return foto;
+    }
+
+    public void setFoto(int foto) {
+        this.foto = foto;
+    }
+}
