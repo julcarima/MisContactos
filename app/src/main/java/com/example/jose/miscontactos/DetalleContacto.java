@@ -60,6 +60,7 @@ public class DetalleContacto extends AppCompatActivity {
         Intent emailIntent = new Intent((Intent.ACTION_SEND));
         emailIntent.setData(Uri.parse("mailto:"));
         emailIntent.putExtra(Intent.EXTRA_EMAIL, email);
+        emailIntent.setType("message/rfc822");
         startActivity(Intent.createChooser(emailIntent, "Email "));
 
     }

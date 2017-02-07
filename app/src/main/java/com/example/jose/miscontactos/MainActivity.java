@@ -3,6 +3,10 @@ package com.example.jose.miscontactos;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -13,25 +17,28 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     ArrayList<contacto> contactos;
-
-
-
+    private RecyclerView listaContactos;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        contactos = new ArrayList<contacto>();
 
-        contactos.add(new contacto("José Miguel", "926238344", "josejulcarima@hotmail.com"));
-        contactos.add(new contacto("Miguel", "9950164647", "Miguel@hotmail.com"));
-        contactos.add(new contacto("Vilma", "924633614", "Vilma@hotmail.com"));
-        contactos.add(new contacto("Cery", "999120095", "Cery@hotmail.com"));
+        Toolbar miActionBar = (Toolbar) findViewById(R.id.miActionBar);
+        setSupportActionBar(miActionBar);
 
-        ArrayList<String> nombresContacto = new ArrayList<>();
-        for (contacto contacto : contactos) {
-            nombresContacto.add(contacto.getNombre());
-        }
 
+        listaContactos = (RecyclerView) findViewById(R.id.rvConatctos);
+
+        /*LinearLayoutManager llm = new LinearLayoutManager(this);
+        llm.setOrientation(LinearLayoutManager.VERTICAL);*/
+        GridLayoutManager glm = new GridLayoutManager(this, 2);
+
+        listaContactos.setLayoutManager(glm);
+        inicializarListaContactos();
+        inicializaAdaptador();
+
+
+        /*
         ListView lstContactos = (ListView) findViewById(R.id.lstContactos);
         lstContactos.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, nombresContacto));
 
@@ -48,5 +55,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        */
+    }
+
+    public ContactoAdaptador adaptador;
+    public void inicializaAdaptador(){
+        adaptador = new ContactoAdaptador(contactos, this);
+        listaContactos.setAdapter(adaptador);
+    }
+
+
+
+    public void inicializarListaContactos(){
+        contactos = new ArrayList<contacto>();
+
+        contactos.add(new contacto(R.drawable.images,"José Miguel", "926238344", "josejulcarima@hotmail.com"));
+        contactos.add(new contacto(R.drawable.imagess,"Miguel", "9950164647", "Miguel@hotmail.com"));
+        contactos.add(new contacto(R.drawable.girl_anime_kawaii_render_by_nardhipster_d6p4iyf,"Vilma", "924633614", "Vilma@hotmail.com"));
+        contactos.add(new contacto(R.drawable.girl_anime_kawaii_render_by_nardhipster_d6p4iyf,"Cery", "999120095", "Cery@hotmail.com"));
     }
 }
+
